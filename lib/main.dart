@@ -10,6 +10,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:pspdfkit_demo_flutter/pdf_screen.dart';
 import 'package:pspdfkit_flutter/pspdfkit.dart';
 
 const String documentPath = 'assets/pdf/Blinding_Lights_Conducteur.pdf';
@@ -52,7 +53,14 @@ class _MyAppState extends State<MyApp> {
     final file = await File(tempDocumentPath).create(recursive: true);
     file.writeAsBytesSync(list);
 
-    await Pspdfkit.present(tempDocumentPath);
+    if (!mounted) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PdfScreen(documentPath: documentPath),
+      ),
+    );
   }
 
   @override
