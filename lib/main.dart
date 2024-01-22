@@ -58,7 +58,8 @@ class _MyAppState extends State<MyApp> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const PdfScreen(documentPath: documentPath),
+        fullscreenDialog: true,
+        builder: (context) => PdfScreen(documentPath: file.absolute.path),
       ),
     );
   }
